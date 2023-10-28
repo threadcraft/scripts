@@ -2,7 +2,7 @@
 
 # This will work on standard Debian 12 just add 'sudo' where appropriate
 # The Unifi installer will handle Java installation automatically
-# CLI Shortcut to launch this script:      wget https://raw.githubusercontent.com/threadcraft/scripts/main/Unifi_install.sh -O - | bash
+# CLI Shortcut to directly launch this script:      wget https://raw.githubusercontent.com/threadcraft/scripts/main/Unifi_install.sh -O - | bash
 
 # Update Debian
 apt-get update && apt-get -y upgrade
