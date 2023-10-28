@@ -1,10 +1,14 @@
-# Install Unifi in a Proxmox LXC container running Debian 12 , updated 10/27/2023
+# Script to Install Unifi in a Proxmox LXC container running Debian 12 template, updated 10/27/2023
+# This will work on standard Debian 12 just add 'sudo' where appropriate
+# FYI The Unifi installer will handle Java installation automatically
 
 # Update Debian
 apt-get update && apt-get -y upgrade
+
 # Install required packages
 apt-get -y install ca-certificates apt-transport-https gpg
-# MongoDB requires Debian 11 package LibSSL
+
+# MongoDB requires older Debian package 'LibSSL'
 wget https://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.1_1.1.1n-0+deb10u6_amd64.deb
 dpkg -i libssl1.1_1.1.1n-0+deb10u6_amd64.deb
 
@@ -13,11 +17,10 @@ wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | gpg --dearmor -o 
 apt-get update && apt-get -y install mongodb-org
 
 # Add Ubiquiti repo and install
-echo 'deb https://www.ui.com/downloads/unifi/debian stable ubiquiti' | tee /etc/apt/sources.list.d/100-ubnt-unifi.list
-wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg
-apt-get update && apt-get install unifi -y
+wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg && echo 'deb https://www.ui.com/downloads/unifi/debian stable ubiquiti' | tee /etc/apt/sources.list.d/100-ubnt-unifi.list
+apt-get update && apt-get -y install unifi
 
-# fix dependancies, optional 
+# check to fix dependancies, optional 
 apt-get install -f
 
 # Done, this should output the UniFi URL 
