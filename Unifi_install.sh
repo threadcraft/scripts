@@ -2,7 +2,7 @@
 
 # This will work on standard Debian 12 just add 'sudo' where appropriate
 # The Unifi installer will handle Java installation automatically
-# CLI command to directly launch this script:    wget https://raw.githubusercontent.com/threadcraft/scripts/main/Unifi_install.sh -O - | bash
+# CLI Shortcut to directly launch this script:      wget https://raw.githubusercontent.com/threadcraft/scripts/main/Unifi_install.sh -O - | bash
 
 # Update Debian
 apt-get update && apt-get -y upgrade
@@ -22,7 +22,7 @@ apt-get update && apt-get -y install mongodb-org
 wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg && echo 'deb https://www.ui.com/downloads/unifi/debian stable ubiquiti' | tee /etc/apt/sources.list.d/100-ubnt-unifi.list
 apt-get update && apt-get -y install unifi
 
-# check to fix dependancies, optional 
+# check to fix dependencies, optional
 apt-get install -f
 
 # Done, this should output the UniFi URL 
